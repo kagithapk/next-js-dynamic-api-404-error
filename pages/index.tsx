@@ -25,7 +25,7 @@ const Home: NextPage = () => {
 	const getName2 = async () => {
 		try {
 			setLoader2(true);
-			const response = await axios.get('/api/test/1');
+			const response = await axios.put('/api/test/1');
 			setName2(response?.data?.name);
 		} catch (e) {
 			console.error(e);
