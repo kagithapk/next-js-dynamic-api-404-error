@@ -9,6 +9,8 @@ const Home: NextPage = () => {
 	const [loader1, setLoader1] = useState(false);
 	const [name2, setName2] = useState('');
 	const [loader2, setLoader2] = useState(false);
+	const [name3, setName3] = useState('');
+	const [loader3, setLoader3] = useState(false);
 
 	const getName1 = async () => {
 		try {
@@ -34,6 +36,18 @@ const Home: NextPage = () => {
 		}
 	};
 
+	const getName3 = async () => {
+		try {
+			setLoader3(true);
+			const response = await axios.put('/api/test/another');
+			setName3(response?.data?.name);
+		} catch (e) {
+			console.error(e);
+		} finally {
+			setLoader3(false);
+		}
+	};
+
 	return (
 		<div className={styles.container}>
 			<Head>
@@ -47,6 +61,8 @@ const Home: NextPage = () => {
 				<button onClick={getName1}>/api/test</button>
 				<p>{loader2 ? 'loading...' : name2}</p>
 				<button onClick={getName2}>/api/test/1</button>
+				<p>{loader3 ? 'loading...' : name3}</p>
+				<button onClick={getName3}>/api/test/another</button>
 			</main>
 		</div>
 	);
